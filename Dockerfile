@@ -3,7 +3,10 @@ LABEL maintainer="lemuretc@gmail.com"
 COPY . /app
 WORKDIR /app
 
-RUN apt-get install -y python-virtualenv
+#RUN apt-get install -y python-virtualenv
+
+RUN pip install virtualenv
+
 #RUN virtualenv -p python3.6 envph
 #RUN source envph/bin/activate
 ##RUN pip install -r requirements.txt
