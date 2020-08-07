@@ -3,7 +3,8 @@ LABEL maintainer="lemuretc@gmail.com"
 COPY . /app
 WORKDIR /app
 
-WORKDIR /app
+RUN apt-get install -y python-virtualenv
+RUN virtualenv envph
 #RUN pip install -r requirements.txt
 RUN pip install flask_appbuilder
 
