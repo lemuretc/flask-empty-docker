@@ -4,10 +4,10 @@ COPY . /app
 WORKDIR /app
 
 RUN apt-get install -y python-virtualenv
-RUN virtualenv -p python3.6 envph
-RUN source envph/bin/activate
-#RUN pip install -r requirements.txt
-RUN pip install flask_appbuilder
+#RUN virtualenv -p python3.6 envph
+#RUN source envph/bin/activate
+##RUN pip install -r requirements.txt
+#RUN pip install flask_appbuilder
 
 RUN apt-get update -y
 RUN apt-get install -y less
