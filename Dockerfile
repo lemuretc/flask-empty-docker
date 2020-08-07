@@ -5,7 +5,7 @@ WORKDIR /app
 
 RUN apt-get install -y python-virtualenv
 RUN virtualenv -p python3.6 envph
-RUN . envph/bin/activate
+RUN source envph/bin/activate
 #RUN pip install -r requirements.txt
 RUN pip install flask_appbuilder
 
