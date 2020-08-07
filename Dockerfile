@@ -4,7 +4,7 @@ COPY . /app
 WORKDIR /app
 
 WORKDIR /app
-RUN pip install -r requirements.txt
+#RUN pip install -r requirements.txt
 RUN pip install flask_appbuilder
 
 ADD run.sh /run.sh
