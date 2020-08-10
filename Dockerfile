@@ -16,7 +16,7 @@ RUN apt-get update -y
 RUN apt-get install -y less
 RUN apt-get install -y vim
 
-RUN apt-get build-dep python-psycopg2
+#RUN apt-get build-dep python-psycopg2
 RUN pip install psycopg2-binary
 
 ADD run.sh /run.sh
