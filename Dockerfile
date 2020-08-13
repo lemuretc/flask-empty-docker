@@ -8,9 +8,10 @@ WORKDIR /opt
 RUN pip install virtualenv
 
 RUN virtualenv -p python3.6 envph
-#RUN source /opt/envph/bin/activate
+RUN source /opt/envph/bin/activate
 ##RUN pip install -r requirements.txt
-#RUN pip install flask_appbuilder
+WORKDIR /opt/envph/
+RUN pip install flask_appbuilder
 
 RUN apt-get update -y
 RUN apt-get install -y less
