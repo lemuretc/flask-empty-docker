@@ -24,7 +24,7 @@ COPY . /opt/envph
 
 WORKDIR /opt/envph/data
 USER root
-ENTRYPOINT ["fabmanager"]
+ENTRYPOINT ["/usr/local/bin/fabmanager"]
 CMD ["run"]
 
 #ADD run.sh /run.sh
