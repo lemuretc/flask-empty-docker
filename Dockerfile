@@ -1,14 +1,14 @@
 FROM python:3.6
 LABEL maintainer="lemuretc@gmail.com"
-COPY . /app
-WORKDIR /app
+#COPY . /app
+WORKDIR /opt
 
 #RUN apt-get install -y python-virtualenv
 
 RUN pip install virtualenv
 
-#RUN virtualenv -p python3.6 envph
-#RUN source envph/bin/activate
+RUN virtualenv -p python3.6 envph
+RUN source envph/bin/activate
 ##RUN pip install -r requirements.txt
 #RUN pip install flask_appbuilder
 
@@ -20,7 +20,14 @@ RUN apt-get install -y gdb python-dbg
 #RUN apt-get build-dep python-psycopg2
 RUN pip install psycopg2-binary
 
-ADD run.sh /run.sh
-RUN chmod +x /*.sh
+COPY . /opt/envph
+
+WORKDIR /opt/envph/data
 USER root
-CMD ["/run.sh"]
+ENTRYPOINT ["fabmanager"]
+CMD ["run"]
+
+#ADD run.sh /run.sh
+#RUN chmod +x /*.sh
+#USER root
+#CMD ["/run.sh"]
