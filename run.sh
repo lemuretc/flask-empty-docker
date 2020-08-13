@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-/usr/local/bin/fabmanager run
+cd /opt/envph/data
+fabmanager run
 
 #while :; do
 #sleep 300
