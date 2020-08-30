@@ -23,7 +23,7 @@ class AcmaOptusFixedRanges(Model):
 
 class Xbtpassembly(db.Model):
     __tablename__ = 'xbtpassembly'
-    __table_args__ = {'schema': 'app'}
+    __table_args__ = {'schema': 'public'}
 
     objectid = db.Column(db.Numeric(38, 0), primary_key=True)
     assemblytype = db.Column(db.String(5), nullable=False)
@@ -46,7 +46,7 @@ class Xbtpitn(db.Model):
         db.UniqueConstraint('prefix', 'localnumber', 'subtype'),
         db.Index('ak_itn', 'identifier', 'subtype'),
         db.Index('ak_itn_pls', 'prefix', 'localnumber', 'subtype'),
-        {'schema': 'app'}
+        {'schema': 'public'}
     )
 
     objectid = db.Column(db.Numeric(38, 0), primary_key=True)
@@ -94,12 +94,12 @@ class Xbtpne(db.Model):
         db.CheckConstraint(
             "(removeportind)::text = ANY ((ARRAY['Y'::character varying, 'N'::character varying])::text[])"),
         db.Index('ie_ne', 'siteoid', 'nealtid'),
-        {'schema': 'app'}
+        {'schema': 'public'}
     )
 
     objectid = db.Column(db.Numeric(38, 0), primary_key=True)
     neid = db.Column(db.String(100), nullable=False, unique=True)
-    siteoid = db.Column(db.ForeignKey('app.xbtpsite.objectid'), nullable=False)
+    siteoid = db.Column(db.ForeignKey('public.xbtpsite.objectid'), nullable=False)
     parent = db.Column(db.Numeric(38, 0))
     ipaddress = db.Column(db.String(50))
     autoreleaseind = db.Column(db.String(1), nullable=False, server_default=db.FetchedValue())
@@ -135,11 +135,11 @@ class Xbtpitnlnsvc(db.Model):
             "(portedcode)::text = ANY ((ARRAY['I'::character varying, 'E'::character varying, 'L'::character varying, 'Y'::character varying])::text[])"),
         db.CheckConstraint(
             "(svcorderbuilt)::text = ANY ((ARRAY['Y'::character varying, 'N'::character varying])::text[])"),
-        {'schema': 'app'}
+        {'schema': 'public'}
     )
 
     objectid = db.Column(db.Numeric(38, 0), primary_key=True)
-    numberoid = db.Column(db.ForeignKey('app.xbtpitn.objectid'), nullable=False, index=True)
+    numberoid = db.Column(db.ForeignKey('public.xbtpitn.objectid'), nullable=False, index=True)
     extendasgn = db.Column(db.String(1), nullable=False, server_default=db.FetchedValue())
     custid = db.Column(db.String(100))
     custordnum = db.Column(db.String(22))
@@ -154,11 +154,11 @@ class Xbtpitnlnsvc(db.Model):
     activitynum = db.Column(db.String(19))
     pendingcode = db.Column(db.String(1))
     pendingcount = db.Column(db.SmallInteger, nullable=False, server_default=db.FetchedValue())
-    workingne = db.Column(db.ForeignKey('app.xbtpne.objectid'), index=True)
+    workingne = db.Column(db.ForeignKey('public.xbtpne.objectid'), index=True)
     portedcode = db.Column(db.String(1), index=True)
     assigndate = db.Column(db.DateTime)
     carrierid = db.Column(db.String(14))
-    workingregion = db.Column(db.ForeignKey('app.xbtpregion.objectid'))
+    workingregion = db.Column(db.ForeignKey('public.xbtpregion.objectid'))
     svcorderbuilt = db.Column(db.String(1), nullable=False, server_default=db.FetchedValue())
 
     # xbtpitn = db.relationship('Xbtpitn', primaryjoin='Xbtpitnlnsvc.numberoid == Xbtpitn.objectid', backref='xbtpitnlnsvcs')
@@ -171,7 +171,7 @@ class Xbtpregion(db.Model):
     __table_args__ = (
         db.UniqueConstraint('regiontype', 'regionid', 'statecountrycode'),
         db.Index('ak_region', 'regiontype', 'regionid', 'statecountrycode'),
-        {'schema': 'app'}
+        {'schema': 'public'}
     )
 
     objectid = db.Column(db.Numeric(38, 0), primary_key=True)
@@ -184,7 +184,7 @@ class Xbtpregion(db.Model):
 
 class Xbtpsite(db.Model):
     __tablename__ = 'xbtpsite'
-    __table_args__ = {'schema': 'app'}
+    __table_args__ = {'schema': 'public'}
 
     objectid = db.Column(db.Numeric(38, 0), primary_key=True)
     siteid = db.Column(db.String(100), nullable=False, unique=True)
