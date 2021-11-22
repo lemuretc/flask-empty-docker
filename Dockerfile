@@ -17,7 +17,7 @@ RUN pip install flask_appbuilder
 RUN apt-get update -y
 RUN apt-get install -y less
 RUN apt-get install -y vim
-RUN apt-get install -y gdb python-dbg
+#RUN apt-get install -y gdb python-dbg
 
 #RUN apt-get build-dep python-psycopg2
 RUN pip install psycopg2-binary
